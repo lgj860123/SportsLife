@@ -16,6 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--项目对应的百度地图AppKey:9a4GMIrdSo53sYxIK83UdMuDGxB8lyTA-->
     </application>
 
 </manifest>
