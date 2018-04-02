@@ -9,7 +9,8 @@ import android.os.Parcelable;
  */
 
 public class RoutePoint implements Parcelable {
-    //
+
+    //保存到数据库的id
     public int id;
     //时间
     public long time;
