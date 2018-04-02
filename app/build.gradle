@@ -9,6 +9,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true }}
     }
     buildTypes {
         release {
@@ -25,4 +26,14 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    compile files('libs/baidumapapi_base_v4_1_1.jar')
+    compile files('libs/baidumapapi_map_v4_1_1.jar')
+    compile files('libs/baidumapapi_util_v4_1_1.jar')
+    compile files('libs/BaiduNaviSDK_3.2.0.jar')
+
+    compile files('libs/Msc.jar')
+    compile files('libs/Msc.jar')
+
+    compile files('libs/gson-2.2.1.jar')
 }
