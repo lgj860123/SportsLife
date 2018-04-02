@@ -69,7 +69,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         setContentView(R.layout.activity_main);
         setStatusBar();
         initMap();
-        isServiceLive = Utils.isServiceWork(this, "com.biubike.service.RouteService");
+        isServiceLive = Utils.isServiceWork(this, "com.pybeta.daymatter.sportslife.service.RouteService");
     }
 
     private void initMap() {

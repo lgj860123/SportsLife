@@ -38,6 +38,7 @@ import java.util.List;
  */
 
 public class Utils {
+    private static final String TAG = "Utils";
     private static PowerManager.WakeLock mWakeLock;
     public static InputMethodManager imm;
     Activity activity;
@@ -47,9 +48,9 @@ public class Utils {
         if(imm==null)
             imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
     }
+
     public  void hideIMM() {
-        imm.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(),
-                InputMethodManager.HIDE_NOT_ALWAYS);
+        imm.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
     public  void showIMM() {
@@ -170,7 +171,7 @@ public class Utils {
         int size = myList.size();
         for (int i = 0; i < size; i++) {
             String mName = myList.get(i).service.getClassName().toString();
-            Log.d("gaolei","mName="+mName);
+            Log.d(TAG,"mName="+mName);
             if (mName.equals(serviceName)) {
                 isWork = true;
                 break;
@@ -189,7 +190,7 @@ public class Utils {
         boolean gps = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         // 通过WLAN或移动网络(3G/2G)确定的位置（也称作AGPS，辅助GPS定位。主要用于在室内或遮盖物（建筑群或茂密的深林等）密集的地方定位）
         boolean network = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-        if (gps ) {
+        if (gps) {
             return true;
         }
 
@@ -201,8 +202,7 @@ public class Utils {
      */
     public static final void openGPS(Context context) {
         Intent GPSIntent = new Intent();
-        GPSIntent.setClassName("com.android.settings",
-                "com.android.settings.widget.SettingsAppWidgetProvider");
+        GPSIntent.setClassName("com.android.settings","com.android.settings.widget.SettingsAppWidgetProvider");
         GPSIntent.addCategory("android.intent.category.ALTERNATIVE");
         GPSIntent.setData(Uri.parse("custom:3"));
         try {

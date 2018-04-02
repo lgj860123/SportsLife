@@ -16,6 +16,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.RemoteViews;
+import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -227,13 +228,10 @@ public class RouteService extends Service {
                 routPointList.add(routePoint);
             else {
                 RoutePoint lastPoint = routPointList.get(routPointList.size() - 1);
-
                 if (routeLat == lastPoint.getRouteLat() && routeLng == lastPoint.getRouteLng()) {
 
                 } else {
-
-                    LatLng lastLatLng = new LatLng(lastPoint.getRouteLat(),
-                            lastPoint.getRouteLng());
+                    LatLng lastLatLng = new LatLng(lastPoint.getRouteLat(),lastPoint.getRouteLng());
                     LatLng currentLatLng = new LatLng(routeLat, routeLng);
                     if (routeLat > 0 && routeLng > 0) {
                         double distance = DistanceUtil.getDistance(lastLatLng, currentLatLng);
@@ -276,16 +274,16 @@ public class RouteService extends Service {
             if (wifiState != null && mobileState != null
                     && NetworkInfo.State.CONNECTED != wifiState
                     && NetworkInfo.State.CONNECTED == mobileState) {
-//                Toast.makeText(context, context.getString(R.string.net_mobile), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, context.getString(R.string.net_mobile), Toast.LENGTH_SHORT).show();
                 // 手机网络连接成功
             } else if (wifiState != null && mobileState != null
                     && NetworkInfo.State.CONNECTED != wifiState
                     && NetworkInfo.State.CONNECTED != mobileState) {
-//                Toast.makeText(context, context.getString(R.string.net_none), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, context.getString(R.string.net_none), Toast.LENGTH_SHORT).show();
                 // 手机没有任何的网络
             } else if (wifiState != null && NetworkInfo.State.CONNECTED == wifiState) {
                 // 无线网络连接成功
-//                Toast.makeText(context, context.getString(R.string.net_wifi), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, context.getString(R.string.net_wifi), Toast.LENGTH_SHORT).show();
 
             }
         }
