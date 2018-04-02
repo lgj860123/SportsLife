@@ -15,6 +15,8 @@ import com.pybeta.daymatter.sportslife.R;
 
 import java.lang.reflect.Field;
 
+import static com.pybeta.daymatter.sportslife.utils.Utils.dp2px;
+
 /**
  * Created by luogj on 2018/3/27.
  */
@@ -22,7 +24,6 @@ import java.lang.reflect.Field;
 public class BaseActivity extends AppCompatActivity {
 
     public int statusBarHeight = 0,titleHeight;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,7 @@ public class BaseActivity extends AppCompatActivity {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
         statusBarHeight = getStatusBarHeight();
-//        titleHeight = dp2px(this,50);
+        titleHeight = dp2px(this,50);
     }
 
     /**

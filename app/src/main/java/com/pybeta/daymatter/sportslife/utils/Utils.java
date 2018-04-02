@@ -41,6 +41,7 @@ public class Utils {
     private static PowerManager.WakeLock mWakeLock;
     public static InputMethodManager imm;
     Activity activity;
+
     public Utils(Activity activity){
         this.activity=activity;
         if(imm==null)
@@ -98,15 +99,13 @@ public class Utils {
     }
 
     public static int getScreenWidth(Context context) {
-        WindowManager wm = (WindowManager) context
-                .getSystemService(Context.WINDOW_SERVICE);
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics outMetrics = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(outMetrics);
         return outMetrics.widthPixels;
     }
     public static int getScreenHeight(Context context) {
-        WindowManager wm = (WindowManager) context
-                .getSystemService(Context.WINDOW_SERVICE);
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics outMetrics = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(outMetrics);
         return outMetrics.heightPixels;
@@ -118,7 +117,6 @@ public class Utils {
         spannableString.setSpan(colorSpan, startIndex, endIndex, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         RelativeSizeSpan sizeSpan01 = new RelativeSizeSpan(proporation);
         spannableString.setSpan(sizeSpan01, startIndex, endIndex, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-
         textView.setText(spannableString);
     }
 
@@ -131,8 +129,7 @@ public class Utils {
 
     public static void acquireWakeLock(Context context) {
         if (null == mWakeLock) {
-            PowerManager pm = (PowerManager) context
-                    .getSystemService(Context.POWER_SERVICE);
+            PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
             mWakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "");
             mWakeLock.setReferenceCounted(true);
             if (null != mWakeLock) {

@@ -10,29 +10,17 @@ import java.util.List;
 
 public class BikeInfo implements Serializable {
     private static final long serialVersionUID = -758459502806858414L;
-    /**
-     * 精度
-     */
+    //精度
     private double latitude;
-    /**
-     * 纬度
-     */
+    // 纬度
     private double longitude;
-    /**
-     * 图片ID，真实项目中可能是图片路径
-     */
+    // 图片ID，真实项目中可能是图片路径
     private int imgId;
-    /**
-     * 商家名称
-     */
+    // 商家名称
     private String name;
-    /**
-     * 距离
-     */
+    // 距离
     private String distance;
-    /**
-     * 赞数量
-     */
+    // 赞数量
     private String time;
 
     public static List<BikeInfo> infos = new ArrayList<BikeInfo>();
