@@ -61,6 +61,29 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".activity.CodeUnlockActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
+
+        <activity android:name=".activity.WalletActivity" />
+
+        <activity android:name=".activity.RouteDetailActivity" />
+
+        <activity android:name=".activity.MyRouteActivity" />
+
+        <activity android:name=".activity.NavigationActivity" />
+
+        <activity
+            android:name=".activity.BDInnerNaviActivity"
+            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <receiver android:name=".service.RouteService$NetWorkReceiver"
             android:label="NetworkConnection">
             <intent-filter>
@@ -68,6 +91,27 @@
             </intent-filter>
         </receiver>
         <!--项目对应的百度地图AppKey:9a4GMIrdSo53sYxIK83UdMuDGxB8lyTA-->
+
+        <receiver
+            android:name=".service.RouteService$NetWorkReceiver"
+            android:label="NetworkConnection">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote"></service>
+        <service
+            android:name=".service.RouteService">
+
+        </service>
+        <provider
+            android:name=".provider.PoiProvider"
+            android:authorities="com.biubike.provider.poiprovider"
+            android:exported="true" />
     </application>
 
 </manifest>

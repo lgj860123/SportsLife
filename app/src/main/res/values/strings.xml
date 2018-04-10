@@ -66,4 +66,14 @@
     <string name="demo_desc_location">demo_desc_location</string>
     <string name="demo_title_geocode">demo_title_geocode</string>
     <string name="demo_desc_geocode">demo_desc_geocode</string>
+
+
+    <string name="listview_header_hint_normal">pull to refresh</string>
+    <string name="listview_header_hint_release">release to start refresh</string>
+    <string name="listview_loading">loading...</string>
+    <string name="nomore_loading">no more to be loaded</string>
+    <string name="refreshing">refreshing...</string>
+    <string name="refresh_done">refresh done</string>
+    <string name="loading_done">loading done</string>
+    <string name="listview_header_last_time">last update：</string>
 </resources>

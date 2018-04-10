@@ -135,8 +135,7 @@ public class NavUtil {
             return;
         }
         // 构建 导航参数
-        NaviParaOption para = new NaviParaOption()
-                .startPoint(startLL).endPoint(endLL);
+        NaviParaOption para = new NaviParaOption().startPoint(startLL).endPoint(endLL);
         try {
             BaiduMapNavigation.openBaiduMapBikeNavi(para, activity);
         } catch (BaiduMapAppNotSupportNaviException e) {
