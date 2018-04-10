@@ -89,8 +89,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         mlocationClient.setLocOption(option);
         mlocationClient.start();
         mCurrentMode = MyLocationConfiguration.LocationMode.FOLLOWING;
-        mBaiduMap.setMyLocationConfigeration(new MyLocationConfiguration(
-                mCurrentMode, true, null));
+        mBaiduMap.setMyLocationConfigeration(new MyLocationConfiguration( mCurrentMode, true, null));
         myOrientationListener = new MyOrientationListener(this);
         //通过接口回调来实现实时方向的改变
         myOrientationListener.setOnOrientationListener(new MyOrientationListener.OnOrientationListener() {

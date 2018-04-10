@@ -15,7 +15,6 @@ import com.pybeta.daymatter.sportslife.interfaces.AllInterface;
  */
 
 public class LeftDrawerLayout extends ViewGroup {
-
     private static final int MIN_DRAWER_MARGIN = 64; // dp
     //Minimum velocity that will be detected as a fling
     private static final int MIN_FLING_VELOCITY = 400; // dips per second
