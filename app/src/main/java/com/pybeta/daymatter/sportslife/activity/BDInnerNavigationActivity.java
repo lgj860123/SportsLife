@@ -93,7 +93,6 @@ public class BDInnerNavigationActivity extends Activity {
 
     protected void onPause() {
         super.onPause();
-
         if(useCommonInterface) {
             if(mBaiduNaviCommonModule != null) {
                 mBaiduNaviCommonModule.onPause();
@@ -152,7 +151,7 @@ public class BDInnerNavigationActivity extends Activity {
             BNRouteGuideManager.getInstance().onConfigurationChanged(newConfig);
         }
 
-    };
+    }
 
 
     @Override
@@ -232,12 +231,10 @@ public class BDInnerNavigationActivity extends Activity {
 
         @Override
         public void notifyOtherAction(int actionType, int arg1, int arg2, Object obj) {
-
             if (actionType == 0) {
                 //导航到达目的地 自动退出
                 Log.i(TAG, "notifyOtherAction actionType = " + actionType + ",导航到达目的地！");
             }
-
             Log.i(TAG, "actionType:" + actionType + "arg1:" + arg1 + "arg2:" + arg2 + "obj:" + obj.toString());
         }
 

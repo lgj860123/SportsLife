@@ -21,7 +21,7 @@ import com.baidu.mapapi.search.sug.SuggestionResult;
 import com.baidu.mapapi.search.sug.SuggestionSearch;
 import com.baidu.mapapi.search.sug.SuggestionSearchOption;
 import com.pybeta.daymatter.sportslife.R;
-import com.pybeta.daymatter.sportslife.adapter.PoiHostoryAdapter;
+import com.pybeta.daymatter.sportslife.adapter.PoiHistoryAdapter;
 import com.pybeta.daymatter.sportslife.adapter.PoiSuggestionAdapter;
 import com.pybeta.daymatter.sportslife.base.BaseActivity;
 import com.pybeta.daymatter.sportslife.bean.PoiObject;
@@ -41,21 +41,21 @@ import static com.pybeta.daymatter.sportslife.utils.NavUtil.activityList;
  */
 
 public class NavigationActivity extends BaseActivity implements OnGetSuggestionResultListener, PoiSuggestionAdapter.OnItemClickListener
-        , PoiHostoryAdapter.OnHistoryItemClickListener{
+        , PoiHistoryAdapter.OnHistoryItemClickListener{
 
     private static final String TAG = "NavigationActivity";
     LinearLayout place_search_layout;
     RelativeLayout title_content_layout;
     EditText place_edit;
     TextView start_place_edit, destination_edit;
-    RecyclerView recyclerview_poi, recyclerview_poi_history;
+    RecyclerView rv_poi, rv_poi_history;
     private List<SuggestionResult.SuggestionInfo> suggestionInfoList;
     private SuggestionSearch mSuggestionSearch = null;
     PoiSuggestionAdapter sugAdapter;
     boolean firstSetAdapter = true, isStartPoi = true;
     String currentAddress, start_place, destination;
     LatLng startLL, endLL, tempLL;
-    PoiHostoryAdapter poiHostoryAdapter;
+    PoiHistoryAdapter poiHistoryAdapter;
     ProviderUtil providerUtil;
 
     public void onCreate(Bundle savedInstanceState) {
@@ -72,14 +72,14 @@ public class NavigationActivity extends BaseActivity implements OnGetSuggestionR
         start_place_edit = (TextView) findViewById(R.id.start_place_edit);
         destination_edit = (TextView) findViewById(R.id.destination_edit);
         place_edit = (EditText) findViewById(R.id.place_edit);
-        recyclerview_poi = (RecyclerView) findViewById(R.id.recyclerview_poi);
-        recyclerview_poi.setLayoutManager(new LinearLayoutManager(this));
-        recyclerview_poi.addItemDecoration(new RecyclerViewDivider(
+        rv_poi = (RecyclerView) findViewById(R.id.recyclerview_poi);
+        rv_poi.setLayoutManager(new LinearLayoutManager(this));
+        rv_poi.addItemDecoration(new RecyclerViewDivider(
                 this, LinearLayoutManager.HORIZONTAL, 1,
                 ContextCompat.getColor(this, R.color.color_c8cacc)));
-        recyclerview_poi_history = (RecyclerView) findViewById(R.id.recyclerview_poi_history);
-        recyclerview_poi_history.setLayoutManager(new LinearLayoutManager(this));
-        recyclerview_poi_history.addItemDecoration(new RecyclerViewDivider(
+        rv_poi_history = (RecyclerView) findViewById(R.id.recyclerview_poi_history);
+        rv_poi_history.setLayoutManager(new LinearLayoutManager(this));
+        rv_poi_history.addItemDecoration(new RecyclerViewDivider(
                 this, LinearLayoutManager.HORIZONTAL, 1,
                 ContextCompat.getColor(this, R.color.color_c8cacc)));
         // 初始化建议搜索模块，注册建议搜索事件监听
@@ -181,12 +181,12 @@ public class NavigationActivity extends BaseActivity implements OnGetSuggestionR
         if (res == null || res.getAllSuggestions() == null) {
             return;
         }
-        recyclerview_poi_history.setVisibility(View.GONE);
+        rv_poi_history.setVisibility(View.GONE);
         suggestionInfoList = res.getAllSuggestions();
         if (firstSetAdapter) {
             String from = isStartPoi == true ? "start" : "detination";
             sugAdapter = new PoiSuggestionAdapter(this, suggestionInfoList, from);
-            recyclerview_poi.setAdapter(sugAdapter);
+            rv_poi.setAdapter(sugAdapter);
             sugAdapter.setOnClickListener(this);
             firstSetAdapter = false;
         } else {
@@ -196,11 +196,11 @@ public class NavigationActivity extends BaseActivity implements OnGetSuggestionR
 
     private void showHistoryPOI() {
         try {
-            recyclerview_poi_history.setVisibility(View.VISIBLE);
+            rv_poi_history.setVisibility(View.VISIBLE);
             List<PoiObject> poiItems = providerUtil.getData();
-            poiHostoryAdapter = new PoiHostoryAdapter(NavigationActivity.this, poiItems);
-            recyclerview_poi_history.setAdapter(poiHostoryAdapter);
-            poiHostoryAdapter.setOnClickListener(this);
+            poiHistoryAdapter = new PoiHistoryAdapter(NavigationActivity.this, poiItems);
+            rv_poi_history.setAdapter(poiHistoryAdapter);
+            poiHistoryAdapter.setOnClickListener(this);
         } catch (Exception e) {
             Log.i(TAG, e.getMessage());
         }
@@ -241,7 +241,6 @@ public class NavigationActivity extends BaseActivity implements OnGetSuggestionR
 
     @Override
     public void onHistoryItemClick(View v, int position, PoiObject poiObject) {
-
         if (isStartPoi) {
             startLL = new LatLng(Double.parseDouble(poiObject.lattitude), Double.parseDouble(poiObject.longitude));
             start_place_edit.setText(poiObject.address);

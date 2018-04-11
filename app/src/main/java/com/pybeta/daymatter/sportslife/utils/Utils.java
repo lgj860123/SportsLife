@@ -41,6 +41,8 @@ public class Utils {
     private static final String TAG = "Utils";
     private static PowerManager.WakeLock mWakeLock;
     public static InputMethodManager imm;
+    public static final String APP_BAIDU_MAP = "com.baidu.BaiduMap";
+    public static final String APP_AMAP = "com.autonavi.minimap";
     Activity activity;
 
     public Utils(Activity activity){
@@ -240,8 +242,7 @@ public class Utils {
         selectDialog.show();
 
     }
-    public static final String APP_BAIDU_MAP = "com.baidu.BaiduMap";
-    public static final String APP_AMAP = "com.autonavi.minimap";
+
     /**
      * 检测是否有某个应用
      * */

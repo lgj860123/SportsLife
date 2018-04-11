@@ -18,6 +18,7 @@ import com.pybeta.daymatter.sportslife.R;
 import java.util.List;
 
 /**
+ * 选择导航对话框
  * Created by luogj on 2018/4/10.
  */
 
@@ -53,8 +54,7 @@ public class NaviSelectDialog extends Dialog implements View.OnClickListener {
     /**
      * 设置内容
      */
-    public Dialog setItems(List<String> itmes,
-                           OnDlgItemClickListener l, boolean hasCheckbox) {
+    public Dialog setItems(List<String> itmes, OnDlgItemClickListener l, boolean hasCheckbox) {
         mItems = itmes;
         mOnItemClickListener = l;
         createItems();
@@ -111,26 +111,21 @@ public class NaviSelectDialog extends Dialog implements View.OnClickListener {
             if (convertView == null) {
                 convertView = mLayoutInflater.inflate(R.layout.layout_item_redio_checkbox_dlg, null);
             }
-            mTextTV = (TextView) convertView
-                    .findViewById(R.id.single_choice_dlg_text_tv);
+            mTextTV = (TextView) convertView.findViewById(R.id.single_choice_dlg_text_tv);
             mTextTV.setText(curValue);
-            mSelectTagIV = (ImageView) convertView
-                    .findViewById(R.id.single_choice_dlg_select_tag_iv);
+            mSelectTagIV = (ImageView) convertView.findViewById(R.id.single_choice_dlg_select_tag_iv);
             if (this.position == position) {
-                mSelectTagIV
-                        .setImageResource(R.mipmap.radio_selected);
+                mSelectTagIV.setImageResource(R.mipmap.radio_selected);
             } else {
-                mSelectTagIV
-                        .setImageResource(R.mipmap.radio_unselected);
+                mSelectTagIV.setImageResource(R.mipmap.radio_unselected);
             }
             return convertView;
         }
     }
 
     public interface OnDlgItemClickListener {
-
         public void onEnsureClicked(Dialog dialog, String value, boolean isChecked);
-        public void onCancleClicked(Dialog dialog);
+        public void onCancelClicked(Dialog dialog);
 
     }
 
@@ -147,7 +142,7 @@ public class NaviSelectDialog extends Dialog implements View.OnClickListener {
                 }
                 break;
             case R.id.tv_dlg_redio_checkbox_cancle:
-                mOnItemClickListener.onCancleClicked(NaviSelectDialog.this);
+                mOnItemClickListener.onCancelClicked(NaviSelectDialog.this);
                 break;
         }
     }

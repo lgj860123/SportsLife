@@ -80,7 +80,7 @@ public class NavUtil {
                 }
             }
 
-            public void onCancleClicked(Dialog dialog) {
+            public void onCancelClicked(Dialog dialog) {
                 dialog.dismiss();
             }
         }, true).show();

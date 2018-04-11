@@ -16,12 +16,12 @@ import java.util.List;
  * Created by luogj on 2018/4/10.
  */
 
-public class PoiHostoryAdapter extends RecyclerView.Adapter<PoiHostoryAdapter.MyViewHolder> {
+public class PoiHistoryAdapter extends RecyclerView.Adapter<PoiHistoryAdapter.MyViewHolder> {
     public Context context;
     OnHistoryItemClickListener listener;
     private List<PoiObject> list;
 
-    public PoiHostoryAdapter(Context context, List<PoiObject> list) {
+    public PoiHistoryAdapter(Context context, List<PoiObject> list) {
         this.context = context;
         this.list = list;
     }

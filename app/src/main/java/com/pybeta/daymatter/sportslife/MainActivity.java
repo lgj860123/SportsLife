@@ -492,8 +492,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             String _str = mapStatus.toString();
             String _regex = "target lat: (.*)\ntarget lng";
             String _regex2 = "target lng: (.*)\ntarget screen x";
-            changeLatitude = Double.parseDouble(latlng(_regex, _str));
-            changeLongitude = Double.parseDouble(latlng(_regex2, _str));
+            changeLatitude = Double.parseDouble(latLng(_regex, _str));
+            changeLongitude = Double.parseDouble(latLng(_regex2, _str));
             LatLng changeLL = new LatLng(changeLatitude, changeLongitude);
             startNodeStr = PlanNode.withLocation(changeLL);
             Log.i(TAG, "changeLatitude-----change--------" + changeLatitude);
@@ -504,7 +504,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         }
     };
 
-    private String latlng(String regexStr, String str) {
+    private String latLng(String regexStr, String str) {
         Pattern pattern = Pattern.compile(regexStr);
         Matcher matcher = pattern.matcher(str);
         while (matcher.find()) {
@@ -513,11 +513,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         return str;
     }
 
-    public void addInfosOverlay(List<BikeInfo> infos) {
+    public void addInfoListOverlay(List<BikeInfo> bikeInfoList) {
         LatLng latLng = null;
         OverlayOptions overlayOptions = null;
         Marker marker = null;
-        for (BikeInfo info : infos) {
+        for (BikeInfo info : bikeInfoList) {
             // 位置
             latLng = new LatLng(info.getLatitude(), info.getLongitude());
             // 图标
@@ -556,7 +556,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         BikeInfo bikeInfo = new BikeInfo(_latitude - 0.0005, _longitude - 0.0005, R.mipmap.bike_xiaolan, "005",
                 "50米", "0.5分钟");
         infos.add(bikeInfo);
-        addInfosOverlay(infos);
+        addInfoListOverlay(infos);
         initNearestBike(bikeInfo, new LatLng(_latitude - 0.0005, _longitude - 0.0005));
     }
 
