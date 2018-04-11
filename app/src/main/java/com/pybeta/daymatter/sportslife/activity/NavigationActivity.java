@@ -36,6 +36,7 @@ import java.util.List;
 import static com.pybeta.daymatter.sportslife.utils.NavUtil.activityList;
 
 /**
+ * 选择目的地界面
  * Created by luogj on 2018/4/10.
  */
 

@@ -23,7 +23,7 @@ import com.baidu.navisdk.adapter.BNRoutePlanNode;
 import com.baidu.navisdk.adapter.BNaviSettingManager;
 import com.baidu.navisdk.adapter.BaiduNaviManager;
 import com.pybeta.daymatter.sportslife.R;
-import com.pybeta.daymatter.sportslife.activity.BDInnerNaviActivity;
+import com.pybeta.daymatter.sportslife.activity.BDInnerNavigationActivity;
 import com.pybeta.daymatter.sportslife.dialog.NaviSelectDialog;
 
 import java.util.ArrayList;
@@ -110,7 +110,7 @@ public class NavUtil {
                             return;
                         }
                     }
-                    Intent intent = new Intent(activity, BDInnerNaviActivity.class);
+                    Intent intent = new Intent(activity, BDInnerNavigationActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable(ROUTE_PLAN_NODE, (BNRoutePlanNode) sNode);
                     intent.putExtras(bundle);
@@ -235,7 +235,7 @@ public class NavUtil {
 
         @Override
         public void onJumpToNavigator() {
-            Intent intent = new Intent(activity, BDInnerNaviActivity.class);
+            Intent intent = new Intent(activity, BDInnerNavigationActivity.class);
             activity.startActivity(intent);
             activity.startActivity(intent);
         }

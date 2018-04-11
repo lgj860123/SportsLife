@@ -15,6 +15,7 @@ import com.pybeta.daymatter.sportslife.custom.ChargeAmountDividerDecoration;
 import com.pybeta.daymatter.sportslife.utils.Utils;
 
 /**
+ * 我的钱包界面
  * Created by luogj on 2018/4/10.
  */
 

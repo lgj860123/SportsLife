@@ -23,25 +23,21 @@ import java.util.List;
 import static com.pybeta.daymatter.sportslife.utils.NavUtil.activityList;
 
 /**
+ * 导航
+ * 对于导航模块有两种方式来实现发起导航。 1：使用通用接口来实现 2：使用传统接口来实现
  * Created by luogj on 2018/4/10.
  */
 
-public class BDInnerNaviActivity extends Activity {
-    private final String TAG = BDInnerNaviActivity.class.getName();
+public class BDInnerNavigationActivity extends Activity {
+    private final String TAG = BDInnerNavigationActivity.class.getName();
     private BNRoutePlanNode mBNRoutePlanNode = null;
     private BaiduNaviCommonModule mBaiduNaviCommonModule = null;
-
-    /*
-     * 对于导航模块有两种方式来实现发起导航。 1：使用通用接口来实现 2：使用传统接口来实现
-     *
-     */
     // 是否使用通用接口
     private boolean useCommonInterface = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         activityList.add(this);
         createHandler();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {

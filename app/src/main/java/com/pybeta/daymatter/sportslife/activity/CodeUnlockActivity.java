@@ -17,6 +17,7 @@ import com.pybeta.daymatter.sportslife.base.BaseActivity;
 import com.pybeta.daymatter.sportslife.utils.Utils;
 
 /**
+ * 扫码解锁界面
  * Created by luogj on 2018/4/10.
  */
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.pybeta.daymatter.sportslife.custom.LeftDrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/id_drawerlayout"
+    android:id="@+id/custom_leftDrawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_343333">
@@ -11,7 +11,7 @@
 
     <!--menu-->
     <FrameLayout
-        android:id="@+id/id_container_menu"
+        android:id="@+id/fl_main_menu"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

@@ -48,33 +48,53 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
+        <!--百度key-->
+        <!--项目对应的百度地图AppKey:9a4GMIrdSo53sYxIK83UdMuDGxB8lyTA-->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="9a4GMIrdSo53sYxIK83UdMuDGxB8lyTA"/>
 
+        <!--应用主页-->
         <activity android:name=".MainActivity"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+        <!--扫码解锁-->
         <activity
             android:name=".activity.CodeUnlockActivity"
             android:windowSoftInputMode="stateVisible|adjustResize" />
 
+        <!--我的钱包-->
         <activity android:name=".activity.WalletActivity" />
 
+        <!--行程详情-->
         <activity android:name=".activity.RouteDetailActivity" />
 
+        <!--我的行程-->
         <activity android:name=".activity.MyRouteActivity" />
 
+        <!--选择目的地-->
         <activity android:name=".activity.NavigationActivity" />
 
+        <!--邀请好友-->
+        <activity android:name=".activity.InvitingFriendsActivity"/>
+
+        <!--问题反馈-->
+        <activity android:name=".activity.ProblemFeedbackActivity"/>
+
+        <!--使用指南-->
+        <activity android:name=".activity.UseGuideActivity"/>
+
+        <!--设置-->
+        <activity android:name=".activity.SettingActivity"/>
+
+        <!--导航-->
         <activity
-            android:name=".activity.BDInnerNaviActivity"
+            android:name=".activity.BDInnerNavigationActivity"
             android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
             <intent-filter>
@@ -90,7 +110,6 @@
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
-        <!--项目对应的百度地图AppKey:9a4GMIrdSo53sYxIK83UdMuDGxB8lyTA-->
 
         <receiver
             android:name=".service.RouteService$NetWorkReceiver"

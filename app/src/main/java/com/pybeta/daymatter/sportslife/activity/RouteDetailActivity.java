@@ -38,62 +38,64 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 行程详情界面
  * Created by luogj on 2018/4/2.
  */
 
 public class RouteDetailActivity extends BaseActivity{
 
-    private MapView route_detail_mapview;
-    BaiduMap routeBaiduMap;
+    private static final String TAG = "RouteDetailActivity";
+    private MapView route_detail_mapView;
+    BaiduMap routeBaiDuMap;
     private BitmapDescriptor startBmp, endBmp, currentBmp;
-    private MylocationListener mlistener;
+    private MyLocationListener mlistener;
     LocationClient mlocationClient;
     TextView total_time, total_distance, total_price, tv_route_replay, tv_title;
     public ArrayList<RoutePoint> routePoints;
     public static boolean completeRoute = false;
     String time, distance, price, routePointsStr;
-    RelativeLayout replay_progress_layout, route_mapview_layout;
+    RelativeLayout replay_progress_layout, route_mapView_layout;
     List<LatLng> points, subList;
     int routePointsLength, currentIndex = 0, spanIndex = 0;
     boolean isInReplay = false, pauseReplay = false;
     ImageView img_replay;
-    SeekBar seekbar_progress;
+    SeekBar seekBar_progress;
     TextView tv_current_time, tv_current_speed;
 
     Handler handler = new Handler() {
         public void handleMessage(Message msg) {
             currentIndex = currentIndex + spanIndex;
-            Log.d("gaolei", "currentIndex------------" + currentIndex);
-            routeBaiduMap.clear();
+            Log.i(TAG, "currentIndex------------" + currentIndex);
+            routeBaiDuMap.clear();
             if(currentIndex<routePointsLength)
                 subList = points.subList(0, currentIndex);
             if (subList.size() >= 2) {
                 OverlayOptions ooPolyline = new PolylineOptions().width(10)
                         .color(0xFF36D19D).points(subList);
-                routeBaiduMap.addOverlay(ooPolyline);
+                routeBaiDuMap.addOverlay(ooPolyline);
             }
             if (subList.size() >= 1) {
                 LatLng latLng = points.get(subList.size() - 1);
                 MarkerOptions options = new MarkerOptions().position(latLng)
                         .icon(currentBmp);
                 // 在地图上添加Marker，并显示
-                routeBaiduMap.addOverlay(options);
+                routeBaiDuMap.addOverlay(options);
                 MapStatusUpdate update = MapStatusUpdateFactory.newLatLng(latLng);
                 // 移动到某经纬度
-                routeBaiduMap.animateMapStatus(update);
+                routeBaiDuMap.animateMapStatus(update);
             }
             if (currentIndex < routePointsLength) {
                 tv_current_time.setText(Utils.getDateFromMillisecond(routePoints.get(currentIndex).time));
                 tv_current_speed.setText(routePoints.get(currentIndex).speed + "km/h");
                 int progress = (int) currentIndex * 100 / routePointsLength;
-                seekbar_progress.setProgress(progress);
+                seekBar_progress.setProgress(progress);
 
                 handler.sendEmptyMessageDelayed(1, 1000);
             } else {
                 OverlayOptions ooPolyline = new PolylineOptions().width(10)
                         .color(0xFF36D19D).points(points);
-                routeBaiduMap.addOverlay(ooPolyline);
-                seekbar_progress.setProgress(100);
+                routeBaiDuMap.addOverlay(ooPolyline);
+                seekBar_progress.setProgress(100);
                 handler.removeCallbacksAndMessages(null);
                 Toast.makeText(RouteDetailActivity.this, "轨迹回放结束", Toast.LENGTH_LONG).show();
             }
@@ -104,7 +106,7 @@ public class RouteDetailActivity extends BaseActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_route_detail);
         setStatusBar();
-        route_detail_mapview = (MapView) findViewById(R.id.route_detail_mapview);
+        route_detail_mapView = (MapView) findViewById(R.id.route_detail_mapview);
         total_time = (TextView) findViewById(R.id.total_time);
         total_distance = (TextView) findViewById(R.id.total_distance);
         total_price = (TextView) findViewById(R.id.total_pricce);
@@ -113,13 +115,13 @@ public class RouteDetailActivity extends BaseActivity{
         tv_current_time = (TextView) findViewById(R.id.tv_current_time);
         tv_current_speed = (TextView) findViewById(R.id.tv_current_speed);
         img_replay = (ImageView) findViewById(R.id.img_replay);
-        seekbar_progress = (SeekBar) findViewById(R.id.seekbar_progress);
+        seekBar_progress = (SeekBar) findViewById(R.id.seekbar_progress);
         replay_progress_layout = (RelativeLayout) findViewById(R.id.replay_progress_layout);
-        route_mapview_layout = (RelativeLayout) findViewById(R.id.route_mapview_layout);
-        route_mapview_layout.requestDisallowInterceptTouchEvent(true);
-        route_detail_mapview.requestDisallowInterceptTouchEvent(true);
-        routeBaiduMap = route_detail_mapview.getMap();
-        route_detail_mapview.showZoomControls(false);
+        route_mapView_layout = (RelativeLayout) findViewById(R.id.route_mapview_layout);
+        route_mapView_layout.requestDisallowInterceptTouchEvent(true);
+        route_detail_mapView.requestDisallowInterceptTouchEvent(true);
+        routeBaiDuMap = route_detail_mapView.getMap();
+        route_detail_mapView.showZoomControls(false);
         startBmp = BitmapDescriptorFactory.fromResource(R.mipmap.route_start);
         endBmp = BitmapDescriptorFactory.fromResource(R.mipmap.route_end);
         currentBmp = BitmapDescriptorFactory.fromResource(R.mipmap.icon_geo);
@@ -152,7 +154,7 @@ public class RouteDetailActivity extends BaseActivity{
         total_time.setText("骑行时长：" + time + "分钟");
         total_distance.setText("骑行距离：" + distance + "米");
         total_price.setText("余额支付：" + price + "元");
-        seekbar_progress.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        seekBar_progress.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             /**
              * 拖动条停止拖动的时候调用
              */
@@ -194,13 +196,13 @@ public class RouteDetailActivity extends BaseActivity{
         if (points.size() > 2) {
             OverlayOptions ooPolyline = new PolylineOptions().width(10)
                     .color(0xFF36D19D).points(points);
-            routeBaiduMap.addOverlay(ooPolyline);
+            routeBaiDuMap.addOverlay(ooPolyline);
             RoutePoint startPoint = routePoints.get(0);
             LatLng startPosition = new LatLng(startPoint.getRouteLat(), startPoint.getRouteLng());
 
             MapStatus.Builder builder = new MapStatus.Builder();
             builder.target(startPosition).zoom(18.0f);
-            routeBaiduMap.animateMapStatus(MapStatusUpdateFactory.newMapStatus(builder.build()));
+            routeBaiDuMap.animateMapStatus(MapStatusUpdateFactory.newMapStatus(builder.build()));
             RoutePoint endPoint = routePoints.get(routePoints.size() - 1);
             LatLng endPosition = new LatLng(endPoint.getRouteLat(), endPoint.getRouteLng());
             addOverLayout(startPosition, endPosition);
@@ -209,7 +211,7 @@ public class RouteDetailActivity extends BaseActivity{
     }
 
 
-    public class MylocationListener implements BDLocationListener {
+    public class MyLocationListener implements BDLocationListener {
         //定位请求回调接口
         private boolean isFirstIn = true;
 
@@ -234,11 +236,11 @@ public class RouteDetailActivity extends BaseActivity{
         MarkerOptions options = new MarkerOptions().position(startPosition)
                 .icon(startBmp);
         // 在地图上添加Marker，并显示
-        routeBaiduMap.addOverlay(options);
+        routeBaiDuMap.addOverlay(options);
         MarkerOptions options2 = new MarkerOptions().position(endPosition)
                 .icon(endBmp);
         // 在地图上添加Marker，并显示
-        routeBaiduMap.addOverlay(options2);
+        routeBaiDuMap.addOverlay(options2);
 
     }
 
@@ -250,11 +252,11 @@ public class RouteDetailActivity extends BaseActivity{
         MarkerOptions options = new MarkerOptions().position(startPosition)
                 .icon(startBmp);
         // 在地图上添加Marker，并显示
-        routeBaiduMap.addOverlay(options);
+        routeBaiDuMap.addOverlay(options);
         MarkerOptions options2 = new MarkerOptions().position(endPosition)
                 .icon(endBmp);
         // 在地图上添加Marker，并显示
-        routeBaiduMap.addOverlay(options2);
+        routeBaiDuMap.addOverlay(options2);
 
     }
 
@@ -289,11 +291,11 @@ public class RouteDetailActivity extends BaseActivity{
         isInReplay = true;
         tv_title.setText(R.string.route_replay);
         tv_route_replay.setVisibility(View.GONE);
-        routeBaiduMap.clear();
+        routeBaiDuMap.clear();
         replay_progress_layout.setVisibility(View.VISIBLE);
-        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) route_mapview_layout.getLayoutParams();
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) route_mapView_layout.getLayoutParams();
         params.height = Utils.getScreenHeight(this) - statusBarHeight - titleHeight;
-        route_mapview_layout.setLayoutParams(params);
+        route_mapView_layout.setLayoutParams(params);
 
         handler.sendEmptyMessageDelayed(1, 1000);
     }
@@ -302,14 +304,14 @@ public class RouteDetailActivity extends BaseActivity{
         isInReplay = false;
         tv_title.setText(R.string.route_detail);
         tv_route_replay.setVisibility(View.VISIBLE);
-        routeBaiduMap.clear();
+        routeBaiDuMap.clear();
         subList.clear();
         currentIndex = 2;
         drawRoute();
         replay_progress_layout.setVisibility(View.GONE);
-        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) route_mapview_layout.getLayoutParams();
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) route_mapView_layout.getLayoutParams();
         params.height = Utils.dp2px(this, 240);
-        route_mapview_layout.setLayoutParams(params);
+        route_mapView_layout.setLayoutParams(params);
         handler.removeCallbacksAndMessages(null);
     }
 

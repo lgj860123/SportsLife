@@ -42,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/user_name"
-                android:text="156****9705"
+                android:text="159****3040"
                 android:textColor="@color/color_f2f2f2"
                 android:textSize="16sp" />
 
@@ -58,6 +58,7 @@
         android:layout_marginTop="80dp"
         android:orientation="vertical">
 
+        <!--我的钱包-->
         <LinearLayout
             style="@style/menu_layout_style"
             android:onClick="gotoWallet">
@@ -69,18 +70,19 @@
             <TextView
                 style="@style/menu_text_style"
                 android:text="@string/wallet" />
-
             <View
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
 
-            <ImageView style="@style/menu_right_arrow_style" />
+            <ImageView
+                style="@style/menu_right_arrow_style" />
+
         </LinearLayout>
 
         <View style="@style/menu_divider_style" />
 
-
+        <!--我的行程-->
         <LinearLayout
             style="@style/menu_layout_style"
             android:onClick="gotoMyRoute">
@@ -103,7 +105,10 @@
 
         <View style="@style/menu_divider_style" />
 
-        <LinearLayout style="@style/menu_layout_style">
+        <!--邀请好友-->
+        <LinearLayout
+            style="@style/menu_layout_style"
+            android:onClick="gotoInvitingFriends">
 
             <ImageView
                 style="@style/menu_icon_style"
@@ -123,8 +128,10 @@
 
         <View style="@style/menu_divider_style" />
 
-        <LinearLayout style="@style/menu_layout_style">
-
+        <!--问题反馈-->
+        <LinearLayout
+            style="@style/menu_layout_style"
+            android:onClick="goToProblemFeedback">
             <ImageView
                 style="@style/menu_icon_style"
                 android:src="@mipmap/feedback" />
@@ -143,7 +150,10 @@
 
         <View style="@style/menu_divider_style" />
 
-        <LinearLayout style="@style/menu_layout_style">
+        <!--使用指南-->
+        <LinearLayout
+            style="@style/menu_layout_style"
+            android:onClick="goToUseGuide">
 
             <ImageView
                 style="@style/menu_icon_style"
@@ -160,11 +170,12 @@
 
             <ImageView style="@style/menu_right_arrow_style" />
         </LinearLayout>
-
         <View style="@style/menu_divider_style" />
 
-        <LinearLayout style="@style/menu_layout_style">
-
+        <!--设置-->
+        <LinearLayout
+            style="@style/menu_layout_style"
+            android:onClick="goToSetting">
             <ImageView
                 style="@style/menu_icon_style"
                 android:src="@mipmap/setting" />
